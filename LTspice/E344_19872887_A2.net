@@ -1,0 +1,43 @@
+* H:\2021\Design (E) 344\LTspice\E344_19872887_A2.asc
+V1 N001 0 PWL file=PowerSupplyPWL.csv
+RSenseBattery BatteryTerminal N007 1m
+RSenseSupply VSupply N001 1m
+C1 N006 0 10m IC=6
+V2 ChargeOn 0 PWL file=ChargeOnPWL.csv
+XU1 N009 N003 N004 LT317A
+XM1 N010 N005 N002 irf9z24n irf9z24n
+M2 N011 ChargeOn 0 0 2N7002
+D1 N010 BatteryTerminal 1N5819
+D2 VSupply N004 1N5819
+S1 P001 N007 N008 0 MYSW
+V3 N008 0 PWL file=SwitchPWL.csv
+S2 N006 N007 0 N008 MYSW2
+V4 P001 0 6
+R3 N003 N002 0.333
+R2 N002 N009 1k
+R1 N009 0 4.7k
+R4 N005 N011 7k
+R5 N002 N005 18k
+R6 ChargeOn 0 1000k
+.model D D
+.lib C:\Users\19872887\Documents\LTspiceXVII\lib\cmp\standard.dio
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\19872887\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0 {transtop} 0 {timestep}
+.include A1cfg.txt
+* Don't change these -- used for auto-assessments.\nYou may modify the input files (.txt and .csv) \n               while developing.\nFor submission: \n  * Only one label name per net name\n  * Use only VSupply for power\n  * Use ChargeOn to control charging\n  * Use BatteryTerminal as your battery's \n          positive terminal
+* Config file:
+* Analysis setup:
+* Battery
+* Power\nsupply
+* =============================\nREPLACE WITH YOUR DETAILS\nE. Stewdent.,  00024601\n=============================
+.inc irf9z24n.lib
+.model MYSW SW(Ron=0.1m Vt=.5 Vh=0)
+.model MYSW2 SW(Ron=0.1m Vt=-.5 Vh=0)
+* ChargeOn is the digital signal used \nfor driving your high-side switching circuit.
+* =============================\nIncludes (don't fiddle with this!!)\n=============================
+* =======================================\nYour circuit goes here, these are just placeholders.\n=======================================
+.lib LTC.lib
+.backanno
+.end
