@@ -1,0 +1,20 @@
+* C:\Users\Sinetemba Klaus\Documents\Engineering\2021\Design (E) 344\Week 4\Assessment_4_LTspice_Template\Assessment_4_LTspice_Template\E344_19872887_A4.asc
+E1 OUT_TSC213 REF_TSC213 VIN+_TSC213 0 50
+I1 0 VIN+_TSC213 PWL file=PowerSupplyPWL.csv
+R§ShuntResistor VIN+_TSC213 0 0.1
+V2 5V 0 5
+I2 0 VIN+_TSC213 SINE(0 {noiseAmp} {noiseFreq})
+XU1 NC_01 NC_02 NC_03 NC_04 NC_05 LTC6078
+C1 OUT_TSC213 0 4.8µ
+R1 REF_TSC213 0 100k
+R2 5V REF_TSC213 185k
+.tran 0 {transtop} 0 {timestep}
+.include A4cfg.txt
+* Config file:
+* Analysis setup:
+* =============================\nREPLACE WITH YOUR DETAILS\nE. Stewdent.,  00024601\n=============================
+* =======================================================\nYour circuit goes here. Use these nets.\nYou may add resistors and capacitors that are available in the undergraduate labs only.\nYou may use the op-amp. If you don't feel it's necessary, please remove it.\n=======================================================
+* This circuit simulates the TSC213.
+.lib LTC5.lib
+.backanno
+.end
